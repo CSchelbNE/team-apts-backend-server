@@ -23,9 +23,10 @@ const mongooseOptions = {
 // put above in environment variables (see A9), then erase these comments, thanks!
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_APTS || 'mongodb+srv://APTS-final-project:supersecretpassword@cluster0.80l7cee.mongodb.net/APTS?retryWrites=true&w=majority';
 mongoose.connect(CONNECTION_STRING,mongooseOptions);
+// app.use(cors());
 app.use(cors({
     credentials: true,
-    // origin:"http://localhost:3000"
+    origin: "https://voluble-tanuki-375d22.netlify.app"
 }));
 app.use(session({
     secret: "should be environment variable!",
