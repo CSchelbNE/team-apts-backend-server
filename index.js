@@ -25,7 +25,7 @@ const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_APTS || 'mongodb+srv:
 mongoose.connect(CONNECTION_STRING,mongooseOptions);
 app.use(cors({
     credentials: true,
-    origin:"http://localhost:3000"
+    // origin:"http://localhost:3000"
 }));
 app.use(session({
     secret: "should be environment variable!",
@@ -38,4 +38,4 @@ UserController(app);
 ListingsController(app);
 ReviewController(app);
 WishlistController(app);
-app.listen(2000);
+app.listen(process.env.PORT || 2000);
