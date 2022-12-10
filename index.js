@@ -21,7 +21,7 @@ const mongooseOptions = {
 }
 // DB_CONNECTION_STRING_APTS = mongodb+srv://APTS-final-project:supersecretpassword@cluster0.80l7cee.mongodb.net/APTS?retryWrites=true&w=majority
 // put above in environment variables (see A9), then erase these comments, thanks!
-const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_APTS || 'mongodb+srv://APTS-final-project:supersecretpassword@cluster0.80l7cee.mongodb.net/APTS?retryWrites=true&w=majority';
+const CONNECTION_STRING = 'mongodb+srv://APTS-final-project:supersecretpassword@cluster0.80l7cee.mongodb.net/APTS?retryWrites=true&w=majority';
 mongoose.connect(CONNECTION_STRING,mongooseOptions);
 // DONT ADD THE EXTRA / TO THE END OF THE CORS ORIGINS
 app.use(cors({
