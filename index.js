@@ -26,7 +26,7 @@ mongoose.connect(CONNECTION_STRING,mongooseOptions);
 // app.use(cors());
 app.use(cors({
     credentials: true,
-    origin: "https://voluble-tanuki-375d22.netlify.app"
+    origin: "*"
 }));
 app.use(session({
     secret: "should be environment variable!",
