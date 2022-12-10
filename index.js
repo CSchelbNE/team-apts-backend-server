@@ -28,10 +28,10 @@ app.use(cors({
     credentials: true,
     origin: "https://voluble-tanuki-375d22.netlify.app"
 }));
-app.use(cors({
-                 credentials: true,
-                 origin: "http://localhost:3000"
-             }))
+// app.use(cors({
+//                  credentials: true,
+//                  origin: "http://localhost:3000"
+//              }))
 // app.use((req, res, next) => {
 //     const allowedOrigins = ["https://voluble-tanuki-375d22.netlify.app", "http://localhost:3000/"];
 //     const origin = req.headers.origin;
