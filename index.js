@@ -25,7 +25,7 @@ const CONNECTION_STRING = process.env.DB_CONNECTION_STRING_APTS || 'mongodb+srv:
 mongoose.connect(CONNECTION_STRING,mongooseOptions);
 app.use(cors({
     credentials: true,
-    origin: "https://voluble-tanuki-375d22.netlify.app/"
+    origin: "https://voluble-tanuki-375d22.netlify.app"
 }));
 // app.use(cors({
 //                  credentials: true,
