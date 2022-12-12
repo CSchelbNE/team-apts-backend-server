@@ -8,19 +8,18 @@ export const ReviewController = (app) => {
 
 export const createReview = async (req,res) => {
     const body = req.body;
-    const result = await dao.pushReviewToDB(body);
+    const result = await dao.createReview(body);
     res.json(result);
 }
 
 export const getAllReviewsByUsername = async (req,res) => {
     const username = req.params.username;
-    console.log(username)
     const result = await dao.getAllReviewsByUsername(username)
     res.json(result);
 }
 
 export const getAllReviewsByAlbum = async (req,res) => {
-    const albumId = parseInt(req.params.id);
+    const albumId = req.params.id;
     console.log(albumId);
     const result = await dao.getAllReviewsByAlbum(albumId);
     res.json(result);

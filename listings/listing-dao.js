@@ -7,3 +7,7 @@ export const pushListingToDB = (listing) => {
 export const pullAllListingByID = (id) => {
     return listingModel.find({discogs_id: id});
 }
+
+export const getListingByMongoID = (id) => {
+    return listingModel.findById(id);
+}
