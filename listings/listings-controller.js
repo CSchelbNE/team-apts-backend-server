@@ -2,8 +2,9 @@ import * as dao from "./listing-dao.js";
 
 export const ListingsController = (app) => {
     app.post("/listings/create", createListing);
-    app.get("/listings/find-all/:id", findListingsById);
-    app.get("/listings/:id", getListingByMongoId)
+    app.get("/listings/get-all/:id",getListingsById);
+    app.get("/listings/single/:id", getListingByMongoId);
+    app.get("/listings/recent", getMostRecentListings);
 }
 
 const createListing = async (req, res) => {
@@ -12,9 +13,9 @@ const createListing = async (req, res) => {
     return res.json(returnedValue)
 }
 
-const findListingsById = async (req, res) => {
+const getListingsById = async (req, res) => {
     const listingId = parseInt(req.params.id);
-    const listings = await dao.pullAllListingByID(listingId);
+    const listings = await dao.getAllListingsById(listingId);
     return res.json(listings);
 }
 
@@ -24,10 +25,9 @@ const getListingByMongoId = async (req, res) => {
     return res.json(listing);
 }
 
-
-
-const getRandomListings = async (req, res) => {
-
+const getMostRecentListings = async (req, res) => {
+    const listings = await dao.getMostRecentListings();
+    return res.json(listings);
 }
 
 

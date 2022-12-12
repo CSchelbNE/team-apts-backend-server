@@ -9,6 +9,10 @@ const listingSchema = mongoose.Schema({
     record_price: Number,
     record_quantity: Number,
     record_image: String,
-    record_vendor: String
-}, {collection: "records"})
+    record_vendor: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+          required: true
+      }
+}, {collection: "listings"})
 export default listingSchema;

@@ -9,8 +9,9 @@ const QUERY_HASHSET = new Set(VALID_QUERY_VALUES)
 
 const searchController = (app) => {
     app.get("/api/search/:SearchParam",searchDB);
-    app.get("/api/search/artist/:artist", searchForArtist)
-    app.get("/api/search/album/:album", searchForAlbum)
+    app.get("/api/search/artist/:artist", searchForArtist);
+    app.get("/api/search/album/:album", searchForAlbum);
+    app.get("/api/search-one/album/:album",searchForAlbumById)
 }
 
 const filterDiscogsApiCall = async (qString) =>{
@@ -45,6 +46,16 @@ const filterAlbums = async (qString) =>{
 }
 
 
+const filterForAlbumById = async (qString, id) =>{
+    return await axios.get(
+        qString + REQUEST_KEY).then(res => {
+        return res.data.results.find(instance => {
+            return instance.id.toString() === id
+        })
+    })
+}
+
+
 const searchForArtist = async (req, res) => {
     let qString = DISCOGS_DATABSE_API + "?q=" + req.params["artist"]+"&artist="+req.params["artist"];
     console.log(qString)
@@ -57,6 +68,12 @@ const searchForAlbum = async (req, res) => {
     let qString = DISCOGS_DATABSE_API + "?q=" + req.params["album"]+"&release_title="+req.params["album"];
     const result = await filterAlbums(qString);
     res.json(result)
+}
+
+const searchForAlbumById = async (req, res) => {
+    let qString = DISCOGS_DATABSE_API + "?q=" + req.params["album"]+"&release_title="+req.params["album"];
+    const result = await filterForAlbumById(qString,req.query.id);
+    res.json(result);
 }
 
 
