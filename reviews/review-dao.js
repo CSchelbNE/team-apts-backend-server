@@ -8,7 +8,7 @@ export const createReview = async (review) => {
 }
 
 export const deleteReview = async (id) => {
-    return reviewModel.findByIdAndDelete(id);
+    return reviewModel.findByIdAndDelete(id).populate(["user","listing"]);
 }
 
 export const editReview = async (id) => {
@@ -17,10 +17,9 @@ export const editReview = async (id) => {
 
 export const getAllReviewsByUsername = async (username) => {
     const result = await userModel.findOne({username: username}).lean(true);
-    console.log(result);
     return reviewModel.find({user: result._id}).populate(["user", "listing"]);
 }
 
 export const getAllReviewsByAlbum = (albumId) => {
-    return reviewModel.find({listing: mongoose.Types.ObjectId(albumId)}).populate(["user","listing"]);
+    return reviewModel.find({listing: new mongoose.Types.ObjectId(albumId)}).populate(["user","listing"]);
 }

@@ -5,12 +5,26 @@ export const ListingsController = (app) => {
     app.get("/listings/get-all/:id",getListingsById);
     app.get("/listings/single/:id", getListingByMongoId);
     app.get("/listings/recent", getMostRecentListings);
+    app.delete("/listings/:id", deleteListing);
+    app.put("/listings/", editListing)
 }
 
 const createListing = async (req, res) => {
     const newListing = req.body;
     const returnedValue = await dao.pushListingToDB(newListing);
     return res.json(returnedValue)
+}
+
+const deleteListing = async (req,res) => {
+    const id = req.params.id;
+    const result = await dao.deleteListing(id);
+    return res.json(result);
+}
+
+const editListing = async (req,res) => {
+    const listing = req.body;
+    const result = await dao.editListing(listing);
+    return res.json(result);
 }
 
 const getListingsById = async (req, res) => {

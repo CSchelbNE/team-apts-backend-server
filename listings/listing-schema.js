@@ -13,6 +13,7 @@ const listingSchema = mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: 'User',
           required: true
-      }
+      },
+    scheduled_for_delete: {type: Boolean, optional: true, default: false}
 }, {collection: "listings"})
 export default listingSchema;
